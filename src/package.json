@@ -1,0 +1,36 @@
+{
+  "name": "print-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "azure-storage": "^2.7.0",
+    "body-parser": "~1.18.3",
+    "cookie-parser": "~1.4.3",
+    "express": "~4.16.0",
+    "express-cluster": "0.0.5",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "puppeteer": "2.0.0",
+    "request": "2.87.0",
+    "uuid": "~3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maheshkumargangula/print-service.git"
+  },
+  "keywords": [
+    "Print",
+    "PDF"
+  ],
+  "author": "Mahesh Kumar Gangula",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maheshkumargangula/print-service/issues"
+  },
+  "homepage": "https://github.com/maheshkumargangula/print-service#readme"
+}
