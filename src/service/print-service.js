@@ -30,7 +30,6 @@ class PrintService {
         (async () => {
             try {
                 const url = req.query.fileUrl;
-                console.log(constants.apiIds.PRINT_API_ID)
                 if (!url)
                     this.sendClientError(res, { id: constants.apiIds.PRINT_API_ID  });
             const page = await this.browser.newPage();
