@@ -5,7 +5,7 @@ module.exports.apiIds = Object.freeze({
 })
 module.exports.responseCodes =  Object.freeze({
     SUCCESS: {
-        name: 'SUCCESS', 
+        name: 'OK', 
         code: 200
     },
     CLIENT_ERROR: {

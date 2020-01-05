@@ -72,7 +72,7 @@ class PrintService {
         const resObj = {
             id: options.id,
             ver: options.ver || constants.apiIds.version,
-            ets: new Date().getTime(),
+            ts: new Date().getTime(),
             params: options.params || {},
             responseCode: options.responseCode || constants.responseCodes.SERVER_ERROR.name
         }
@@ -84,7 +84,7 @@ class PrintService {
         const resObj = {
             id: options.id,
             ver: options.ver || constants.apiIds.version,
-            ets: new Date().getTime(),
+            ts: new Date().getTime(),
             params: options.params || {},
             responseCode: options.responseCode || constants.responseCodes.CLIENT_ERROR.name
         }
@@ -96,7 +96,7 @@ class PrintService {
         const resObj = {
             id: options.id,
             ver: options.ver || constants.apiIds.version,
-            ets: new Date().getTime(),
+            ts: new Date().getTime(),
             params: options.params || {},
             responseCode: options.responseCode || constants.responseCodes.SUCCESS.name,
             result: result
