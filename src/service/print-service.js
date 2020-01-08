@@ -36,16 +36,13 @@ class PrintService {
             await page.goto(url);
             const pdfFilePath = this.pdfBasePath + uuidv1() +'.pdf'
             await page.pdf({path: pdfFilePath, format: 'A4'});
-            page.close()
-            const printService = this;
+            page.close();
             const destPath = 'print-service/' + path.basename(pdfFilePath);
             const pdfUrl = await this.uploadBlob(this.config.azureAccountName, this.config.azureContainerName, destPath, pdfFilePath);
-            this.sendSuccess(res, { id: constants.apiIds.PRINT_API_ID }, { pdfUrl: pdfUrl });
+            this.sendSuccess(res, { id: constants.apiIds.PRINT_API_ID }, { pdfUrl: pdfUrl, ttl: 600 });
         } catch (error) {
             console.error('Error: '+ JSON.stringify(error));
             this.sendServerError(res, { id: constants.apiIds.PRINT_API_ID  });
-        } finally {
-            console.log('Executing finally block');
         }
     })();
     }
@@ -72,7 +69,7 @@ class PrintService {
         const resObj = {
             id: options.id,
             ver: options.ver || constants.apiIds.version,
-            ets: new Date().getTime(),
+            ts: new Date().getTime(),
             params: options.params || {},
             responseCode: options.responseCode || constants.responseCodes.SERVER_ERROR.name
         }
@@ -84,7 +81,7 @@ class PrintService {
         const resObj = {
             id: options.id,
             ver: options.ver || constants.apiIds.version,
-            ets: new Date().getTime(),
+            ts: new Date().getTime(),
             params: options.params || {},
             responseCode: options.responseCode || constants.responseCodes.CLIENT_ERROR.name
         }
@@ -96,7 +93,7 @@ class PrintService {
         const resObj = {
             id: options.id,
             ver: options.ver || constants.apiIds.version,
-            ets: new Date().getTime(),
+            ts: new Date().getTime(),
             params: options.params || {},
             responseCode: options.responseCode || constants.responseCodes.SUCCESS.name,
             result: result
