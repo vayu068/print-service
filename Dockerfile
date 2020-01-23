@@ -15,7 +15,9 @@ RUN apt-get clean \
     && apt-get install -y google-chrome-unstable \
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
-
+    
+RUN apk add font-noto-gujarati font-noto-kannada font-noto-avestan font-noto-osage font-noto-kayahli font-noto-oriya font-noto-telugu font-noto-tamil font-noto-bengali font-noto-malayalam font-noto-arabic font-noto-extra \
+    && fc-cache -f
 RUN groupadd -r sunbird && useradd -r -g sunbird -G audio,video sunbird \
     && mkdir -p /home/sunbird/Downloads \
     && chown -R sunbird:sunbird /home/sunbird
