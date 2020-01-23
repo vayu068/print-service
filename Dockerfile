@@ -5,9 +5,6 @@ COPY src /opt/print-service/
 WORKDIR /opt/print-service/
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 RUN npm install --unsafe-perm
-RUN apt update && apt install fonts-indic -y \
-    && fc-cache -f
-
 FROM node:8.11-slim
 MAINTAINER "Mahesh Kumar Gangula" "mahesh@ilimi.in"
 RUN apt-get clean \
