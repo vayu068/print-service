@@ -14,6 +14,9 @@ RUN apt-get clean \
     && apt-get install -y google-chrome-unstable \
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
+RUN groupadd -r sunbird && useradd -r -g sunbird -G audio,video sunbird \
+    && mkdir -p /home/sunbird/Downloads \
+    && chown -R sunbird:sunbird /home/sunbird
 WORKDIR /usr/share/fonts/truetype/ttf-indic-fonts-core
 RUN ln -s ../lohit-punjabi/Lohit-Punjabi.ttf lohit_hi.ttf \
   && ln -s ../lohit-tamil/Lohit-Tamil.ttf lohit_ta.ttf \
@@ -21,10 +24,7 @@ RUN ln -s ../lohit-punjabi/Lohit-Punjabi.ttf lohit_hi.ttf \
   && ln -s ../lohit-punjabi/Lohit-Punjabi.ttf lohit_pa.ttf
  
 RUN apt update && apt install fonts-indic -y \
-    && fc-cache -f
-RUN groupadd -r sunbird && useradd -r -g sunbird -G audio,video sunbird \
-    && mkdir -p /home/sunbird/Downloads \
-    && chown -R sunbird:sunbird /home/sunbird
+    && fc-cache -f    
 USER sunbird
 COPY --from=build --chown=sunbird /opt/print-service/ /home/sunbird/print-service/
 WORKDIR /home/sunbird/print-service/
