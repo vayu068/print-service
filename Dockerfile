@@ -10,21 +10,14 @@ MAINTAINER "Mahesh Kumar Gangula" "mahesh@ilimi.in"
 RUN apt-get clean \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-    && apt-get update \
+    && apt update && apt install fonts-indic -y \
+    && fc-cache -f \
     && apt-get install -y google-chrome-unstable \
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 RUN groupadd -r sunbird && useradd -r -g sunbird -G audio,video sunbird \
     && mkdir -p /home/sunbird/Downloads \
     && chown -R sunbird:sunbird /home/sunbird
-WORKDIR /usr/share/fonts/truetype/ttf-indic-fonts-core
-RUN ln -s ../lohit-punjabi/Lohit-Punjabi.ttf lohit_hi.ttf \
-  && ln -s ../lohit-tamil/Lohit-Tamil.ttf lohit_ta.ttf \
-  && ln -s ../fonts-beng-extra/MuktiNarrow.ttf \
-  && ln -s ../lohit-punjabi/Lohit-Punjabi.ttf lohit_pa.ttf
- 
-RUN apt update && apt install fonts-indic -y \
-    && fc-cache -f    
 USER sunbird
 COPY --from=build --chown=sunbird /opt/print-service/ /home/sunbird/print-service/
 WORKDIR /home/sunbird/print-service/
