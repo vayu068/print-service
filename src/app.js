@@ -31,7 +31,6 @@ const express = require('express'),
       return app.listen(port, () => console.log(`print-service cluster is running on port ${port} with ${process.pid} pid`));
     }, { count: threads });
   } else {
-    const app = createAppServer();
+     const app = createAppServer();
     app.listen(port, () => console.log(`print-service is running in test env on port ${port} with ${process.pid} pid`));
   }
-  
